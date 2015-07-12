@@ -1,0 +1,219 @@
+<%= link_to image_tag("/images/logo.png", class: "picture logo"), "http://reincarnage.herokuapp.com/"%>
+
+<!-- Remove the following four lines before we begin -->
+<h3>Today we are going to piece together level 3 of Keyan's critically acclaimed video game 'Reincarnage'</h3>
+<h2>For the full game click on the logo below.</h2>
+<h1>BUT FIRST...</h1>
+<h3>Let's go to the file "app > views > games > level.html.erb" and learn how to create a game!</h3>
+
+
+<script type="text/javascript">
+// This is the first thing we will do... create an instance of a Phaser game. We give it our canvas size and set up phaser auto settings to give us some default physics. Then we pass it our methods for preloading objects, creating objects in the game and updating the game.
+var game = new Phaser.Game(1024, 768, Phaser.AUTO, '', { preload: preload, create: create, update: update});
+
+function preload(){
+
+  // Here is where we preload images and sounds that we need for our app.
+
+  // Lets get our background first
+	game.load.image('background', '/images/background.png');
+
+  // And now let's add our frog
+  // game.load.spritesheet('froggy', '/images/frog.png', 216, 218);
+
+  // Where is our frog going? Let's add a new layer to our background. Some water that our characters could dive into.
+  // game.load.image('water', '/images/water.png');
+
+  // Our frog is panicking cus he is falling in the water, let's add a sound to our app
+  // game.load.audio('ribbit', '/sounds/ribbit.mp3');
+
+  // Let's add a platform for our character to sit on so that it doesnt get wet
+  // game.load.image('rock', '/images/rock.png');
+
+  // But wait... the rock has an invisible border that makes our frog look elevated and unnatural. So let's add some invisible platforms for the frog to stand on instead. Then we can customize their position.
+  // First a visible line (the same size as invis.) so that we can see where we are placing our invisible one
+  // game.load.image('purp_line', '/images/purp_line.png');
+  
+  // Next our invisible one
+  // game.load.image('invisible_line', '/images/blank_line.png');
+
+  // Let's add a cloud
+  // game.load.image('cloud', '/images/cloud.png');
+
+  // Now for our bird.
+  // game.load.spritesheet('player_bird', '/images/bird1.png', 84, 80);
+
+}
+
+function create(){
+
+  // let's load our background
+  background = game.add.image(-100, 0, 'background');
+  // background.scale.x = game.rnd.realInRange(1.87, 1.87);
+  // background.scale.y = game.rnd.realInRange(1.87, 1.87);
+
+  // Here is where we load our cloud
+  // cloud = game.add.sprite(335, -50, 'cloud');
+  // game.physics.arcade.enable(cloud);
+  // cloud.body.velocity.x = 5;
+
+  // Here we add our rock to stand on
+  // rock = game.add.sprite(105, 560, 'rock');
+
+  // Lets give our rock physics
+  // game.physics.arcade.enable(rock);
+  // rock.enableBody = true;
+
+ 	// we must make it so that our rock doesn't move when our bird collides with it
+  // rock.body.immovable = true;
+
+  // Here we will add our frog. We want to add it after our background but before the water... so that the order of z-index is correct
+  // frog = game.add.sprite(175, 500, 'froggy')
+
+  // Our frog is huge! Let's change the size of our frog to be 18% of normal size
+  // frog.scale.x = game.rnd.realInRange(.18, .18);
+  // frog.scale.y = game.rnd.realInRange(.18, .18);
+
+  // Let's enable physics for our frog
+  // game.physics.arcade.enable(frog);
+
+  // Now let's make sure this frog will obey the laws of gravity
+  // frog.body.gravity.y = 1000;
+
+  // Let's load our frog sound
+  // ribbit = game.add.audio('ribbit');
+
+  // let's add a croaking sound that will play when our app loads
+  // ribbit.play();
+
+  // Here we will add an invisible ledge for our frog to stand on. It will help it look like the froggy is actually standing on the rock.
+  // But first we will use the sprite 'purp_line' so that we can visibly place the platform before we make it invisible.
+  // ledge = game.add.sprite(140, 595, 'purp_line');
+  // ledge.scale.x = game.rnd.realInRange(1, 1);
+  // game.physics.arcade.enable(ledge);
+  // ledge.enableBody = true;
+  // ledge.body.immovable = true;
+
+  // Declaring a variable for our bird which we also add here
+  // birdie = game.add.sprite(750, -30, 'player_bird');
+
+  // Resizing the bird to be the way we want
+  // birdie.scale.x = game.rnd.realInRange(1.8, 1.8);
+  // birdie.scale.y = game.rnd.realInRange(1.8, 1.8);
+
+  // Enabling physics for bird
+  // game.physics.arcade.enable(birdie);
+
+  // Setting a default velocity
+  // birdie.body.velocity.x = -180;
+
+  // Making is so that bird will not go off screen
+  // birdie.body.collideWorldBounds = true;
+
+  // Making so that bird will bounce when it hits screen
+  // birdie.body.bounce.setTo(1, 1);
+
+  // Calling phasers method to use the cursor keys for our game
+  // cursors = game.input.keyboard.createCursorKeys();
+
+  // Adding animations for our bird. Here we specify which sections of our sprite will be rotated through and how fast they will be rotated
+  // birdie.animations.add('left', [0, 1, 2, 1], 6, true);
+  // birdie.animations.add('right', [9, 10, 11, 10], 6, true);
+  // birdie.animations.add('down', [18, 19, 20, 19], 6, true);
+  // birdie.animations.add('left_down', [6, 7, 8, 7], 6, true);
+  // birdie.animations.add('right_down', [15, 16, 17, 16], 6, true);
+  // birdie.animations.add('up', [21, 22, 23, 22], 6, true);
+  // birdie.animations.add('left_up', [3, 4, 5, 4], 6, true);
+  // birdie.animations.add('right_up', [12, 13, 14, 13], 6, true);
+
+  // Here is where we will load our water, if we add this after our bird.. it will be placed in front of the bird on the z index.
+  // water = game.add.image(-525, 625, 'water');
+
+}
+
+function update(){
+
+	// Let's make it so that our characters cannot go through our rock
+  // game.physics.arcade.collide(frog, rock);
+
+  // Declaring our keystroke controls function
+  // initiateControls = function(fowl) {
+  //   if (cursors.up.isDown) {
+  //     if (cursors.left.isDown) {
+
+  //         fowl.body.velocity.y = -180;
+  //         fowl.body.velocity.x = -180;
+
+  //     } else if (cursors.right.isDown) {
+
+  //         fowl.body.velocity.y = -180;
+  //         fowl.body.velocity.x = 180;
+
+  //     } else {
+
+  //         fowl.body.velocity.y = -180;
+  //         fowl.body.velocity.x *= .99;
+  //     }
+
+  //   } else if (cursors.down.isDown) {
+
+  //       if (cursors.left.isDown) {
+
+  //           fowl.body.velocity.y = 180;
+  //           fowl.body.velocity.x = -180;
+
+  //       } else if (cursors.right.isDown) {
+
+  //           fowl.body.velocity.y = 180;
+  //           fowl.body.velocity.x = 180;
+
+  //       } else {
+  //           fowl.body.velocity.y = 180;
+  //           fowl.body.velocity.x *= .99;
+  //       }
+
+  //   } else if (cursors.left.isDown) {
+  //       fowl.body.velocity.x = -180;
+  //       fowl.body.velocity.y *= .5;
+
+  //   } else if (cursors.right.isDown) {
+  //       fowl.body.velocity.x = 180;
+  //       fowl.body.velocity.y *= .5;
+  //   }
+  // }
+
+  // Declaring our animation function.
+  // initiateAnimations = function(fowl){
+  //   if (fowl.body.velocity.x >= 180 && fowl.body.velocity.y >= 180) {
+  //       fowl.animations.play('right_down')
+  //   } else if (fowl.body.velocity.x <= -180 && fowl.body.velocity.y >= 180) {
+  //       fowl.animations.play('left_down')
+  //   } else if (fowl.body.velocity.x >= 180 && fowl.body.velocity.y <= -180) {
+  //       fowl.animations.play('right_up')
+  //   } else if (fowl.body.velocity.x <= -180 && fowl.body.velocity.y <= -180) {
+  //       fowl.animations.play('left_up')
+  //   } else if (fowl.body.velocity.x >= 140) {
+  //       fowl.animations.play('right')
+  //   } else if (fowl.body.velocity.x <= -140) {
+  //       fowl.animations.play('left')
+  //   } else if (fowl.body.velocity.y > 0 && (fowl.body.velocity.x < 140 && fowl.body.velocity.x > -140)) {
+  //       if (fowl.body.velocity.y < 600) {
+  //           fowl.animations.play('down')
+  //       } else {
+  //           fowl.animations.play('fall')
+  //       }
+  //   }
+  //   else if (fowl.body.velocity.y < 0 && (fowl.body.velocity.x < 140 && fowl.body.velocity.x > -140)) {
+  //       fowl.animations.play('up')
+  //   }
+  // }
+
+  // Here is where we call our function that gives us control of our bird
+  // initiateControls(birdie);
+
+  // Here is where we turn on our bird animations
+  // initiateAnimations(birdie);
+
+}
+
+</script>

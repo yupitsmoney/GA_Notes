@@ -1,0 +1,30 @@
+{
+    "blogTitle": "The Blog of Jim",
+    "author": "Jim Clark",
+    "numPosts": 13,
+    "blogPosts": [
+        {
+            "title": "Firebase is Cool",
+            "date": "2015-05-10",
+            "body": "Firebase is so cool that Google just had to have it. It's realtime data syncronization is just simply amazing.",
+            "allowComments": true,
+            "comments": [
+                {
+                    "commenter": "A Fan",
+                    "comment": "What a great blog you have."
+                },
+                {
+                    "commenter": "Not A Fan",
+                    "comment": "What a waste of time."
+                }
+            ]
+        },
+        {
+            "title": "GA Rocks!",
+            "date": "2015-05-09",
+            "body": "It sure is fun to hang around GA. I always get inspired by the many brilliant and creative people I meet.",
+            "allowComments": false,
+            "comments": []
+        }
+    ]
+}

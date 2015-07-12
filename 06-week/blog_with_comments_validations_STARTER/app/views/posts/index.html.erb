@@ -1,0 +1,37 @@
+<h1 class="jumbotron">Welcome to the DTLA WDI Blog</h1>
+
+<% if current_user %>
+    <%= link_to "Add New Post", new_post_path %>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <%= link_to "Logout", destroy_session_path, method: :delete %>
+<% else %>
+    <%= link_to "Login", new_session_path %>
+<% end %>
+&nbsp;&nbsp;|&nbsp;&nbsp;
+<%= link_to "Add New User", new_user_path %>
+    
+<hr>
+
+<% if @posts.count > 0 %>
+    <% @posts.each do |post| %>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3><%= post.title %></h3>
+                <h6>Posted by: <%= post.user.name %>&nbsp;&nbsp;<small><%= post.updated_at%></small></h6>
+            </div>
+            <div class="panel-body">
+                <p><%= post.body %></p>
+            </div>
+            <div class="panel-footer">
+                <% if current_user
+                    add = "/Add"
+                else
+                    add = ""
+                end %>
+                <%= link_to "View#{add} Comments", post_path(id: post.id) %>
+            </div>
+        </div>
+    <% end %>
+<% else %>
+    <h2>No Posts Exist</h2>
+<% end %>

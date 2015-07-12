@@ -1,0 +1,10 @@
+<h1> Super Heros </h1> 
+<% @superheros.each do |superhero| %> 
+ 
+<h2>Name <%= superhero.name%></h2>
+<h2>Power Level <%= superhero.power_level%></h2>
+<H2>Weakness <%= superhero.weakness%></H2>
+
+<%= link_to "See More", superhero_path(superhero) %>
+<hr>
+<% end -%>

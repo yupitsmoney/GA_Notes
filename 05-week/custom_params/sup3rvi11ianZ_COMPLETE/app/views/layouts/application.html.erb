@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<%= favicon_link_tag("http://images.clipartpanda.com/superman-logo-aiqpAr5iM.png")%>
+  <title>Sup3Rh3r0z 2.o</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div class="jumbotron">
+	<div class="container">
+		<h2>Sup3Rh3r0z   2.o</h2>
+		<br>
+	<%= link_to "Display all", heroes_path %>
+	</div>
+</div>
+<%= yield %>
+
+</body>
+</html>

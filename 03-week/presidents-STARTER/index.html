@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="stylesheet" href="css/main.css">
+
+
+    <script src="js/main.js"></script>
+    <script src="js/PresidentsController.js"></script>
+
+  </head>
+  
+  <body>
+    <section id="presidents">
+
+    <!-- fix the code in the html and js to make this a working firebase and angular app -->
+
+      <!-- print the government name -->
+      <h1>{{ some code goes here }}</h1>
+      <!-- and the founding year and population -->
+      <h5>Founded: {{ some more code goes here }} | Population: {{ even more code goes here }}</h5>
+
+      <h2>Presidents:</h2>
+
+
+      <div class='president' ng-repeat="president in <!-- some code?? -->">
+        <input type="text" ng-model="president.name" ng-change="<!-- some code -->.$save(president)">
+        <a href="" class='remove' ng-click="<!-- some code -->.$remove(president)">Remove</a>
+      </div>
+
+      <form ng-submit="<!-- some code -->.addPresident(<!-- some code -->.newPresident)">
+        <input type="text" ng-model="<!-- some.code -->.newPresident.name" placeholder="Add a new President's name">
+      </form>
+      
+    </section>
+  </body>
+
+</html>

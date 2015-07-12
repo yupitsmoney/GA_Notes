@@ -1,0 +1,48 @@
+<div class="container">
+
+  <h1><%= @hero.name %></h1>
+  <p><%= "#{@hero.name} is #{@hero.description} with #{@hero.powers} abilities."%></p>
+
+
+  <%= form_tag(hero_path, method: "get") do %>
+    See another superhero (by id) <%= text_field_tag :hero_id %>
+    <%= submit_tag "Go", "class" => "btn btn-primary" %>
+  <% end %>
+
+
+  <%= form_tag(hero_path, method: "get") do %>
+    <%= submit_tag "Prev", "class" => "btn btn-primary" %>
+    <%= submit_tag "Next", "class" => "btn btn-primary" %>
+  <% end %>
+
+
+  <h3>Superhero Data</h3>
+  <table class="table table-striped">
+      <%= cache @hero do %>
+    <tr>
+      <th>Alias</th>
+      <td><%= @hero.identity %></td>
+    </tr>
+    <tr>
+      <th>Last Known Location</th>
+      <td><%= @hero.location %></td>
+    </tr>
+    <tr>
+      <th>Power</th>
+      <td><%= @hero.powers %></td>
+    </tr>
+    <tr>
+      <th>Weakness</th>
+      <td><%= @hero.weakness %></td>
+    </tr>
+    <tr>
+      <th>Stance</th>
+      <td><%= @hero.description %></td>
+    </tr>
+    <tr>
+      <th>Arch-Nemesis</th>
+      <td><%= @hero.nemesis %></td>
+    </tr>
+      <% end %>
+  </table>
+</div>

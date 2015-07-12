@@ -1,0 +1,28 @@
+<div class="jumbotron"><h1 class="text-center">Big Hippo Details</h1></div>
+
+<div class="row">
+    <div class=" col-xs-6 col-xs-offset-3">
+        <div class="panel panel-default">
+            <div class="panel-heading text-center">
+                <h1><%= @hippo["name"] %></h1>
+            </div>
+            <div class="panel-body">
+                <dl class="dl-horizontal">
+                    <dt>Age</dt>
+                    <dd><%= @hippo['age'] %></dd>
+                    <dt>Weight</dt>
+                    <dd><%= @hippo['weight'] %></dd>
+                    <dt>Price</dt>
+                    <dd><%= number_to_currency @hippo['price'] %></dd>
+                </dl>
+            </div>
+            <div class="panel-footer text-right">
+                <!-- the following 'delete' route uses a get, but is mapped to the destroy action -->
+                <!-- it's a bit of a hack but it works! -->
+                <a href="/hippos/<%= @hippo['id'] %>/delete">delete</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                <a href="/hippos/<%= @hippo['id'] %>/edit">edit</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                <a href="/hippos">view all</a>
+            </div>
+        </div>
+    </div>
+</div>

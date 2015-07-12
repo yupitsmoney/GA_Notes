@@ -1,0 +1,13 @@
+<h1> <%= @bean.name %> </h1>
+
+<p>This coffee is a <%= @bean.roast %> roast from <%= @bean.place_of_origin.country %> in the province of <%= @bean.place_of_origin.province %>, and we have <%= @bean.quantity %> pounds available.</p>
+
+<h4>Vendors:</h4>
+<% @bean.vendors.each do |vendor| %>
+	<p>Vendor: <%= vendor.name %> City: <%= vendor.city %> State: <%= vendor.state %></p>
+	<% end %>
+
+<%= link_to "Add Vendor", new_bean_vendor_path(@bean) %>
+<%= link_to "Delete this bean!", bean_path, method: :delete, data: { confirm: "Do you really want to delete this????"} %>
+
+<%= link_to "Back to the list!", beans_path %>

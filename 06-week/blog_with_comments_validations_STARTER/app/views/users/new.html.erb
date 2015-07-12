@@ -1,0 +1,21 @@
+<h1 class="jumbotron">Enter New User Info</h1>
+
+<%= form_for @user, url: create_user_path do |f| %>
+
+    <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control"%>
+    </div>
+    
+    <div class="form-group">
+    <%= f.label :email %>
+    <%= f.text_field :email, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+    <%= f.label :password_digest %>
+    <%= f.text_field :password_digest, class: "form-control" %>
+
+    <%= f.submit "Register", class: "btn btn-primary" %>
+
+<% end %>

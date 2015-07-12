@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html ng-app="githubApp">
+	<head>
+		<meta charset="utf-8">
+
+		<title>Github API App</title>
+
+		<!--[if lt IE 9]>
+		<script src="js/html5shiv.js"></script>
+		<![endif]-->
+
+		<link rel="stylesheet" href="css/normalize.css">
+		<link rel="stylesheet" href="css/style.css">
+		
+		<script src="js/angular.js"></script>
+		<script src="js/app.js"></script>
+		<script src="js/TeamFactory.js"></script>
+		<script src="js/TeamMembersController.js"></script>
+	</head>
+
+	<body ng-controller="TeamMembersController as team">
+		<div class="wrapper">
+			
+			<header>
+				<h1>GA GITHUB PROFILES!</h1>
+			</header>
+			<div class="user" ng-repeat="person in team.members">
+
+				<h3><strong>{{person.login}}</strong></h3>
+        <img class="profile-pic" ng-src="{{person.avatar_url }}" alt=""></br>
+        <a href="{{person.html_url}}" target="blank"> {{person.login}} </a>
+      </div>
+
+		</div>
+	</body>
+</html>

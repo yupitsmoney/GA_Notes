@@ -1,0 +1,9 @@
+.hover {
+  opacity: 0.9;
+}
+tr:hover {
+  background-color: #7f8c8d !important;
+}
+table {
+  margin: auto;
+}

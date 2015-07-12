@@ -1,0 +1,27 @@
+<div class="jumbotron"><h1 class="text-center">Edit Big Hippo</h1></div>
+
+<div class="row">
+    <div class=" col-sm-6 col-sm-offset-3">
+        <div class="panel panel-default">
+            <div class="panel-heading text-center">
+                <h1><%= @hippo["name"] %></h1>
+            </div>
+                <%= form_tag('/hippos/' + @hippo['id'].to_s, method: 'put') do %>
+                    <div class="panel-body">
+                        <dl class="dl-horizontal">
+                            <dt>Age</dt>
+                            <dd><input type="text" name="age" value="<%= @hippo['age'] %>"></dd>
+                            <dt>Weight</dt>
+                            <dd><input type="text" name="weight" value="<%= @hippo['weight'] %>"></dd>
+                            <dt>Price</dt>
+                            <dd><input type="text" name="price" value="<%= @hippo['price'] %>"></dd>
+                        </dl>
+                    </div>
+                    <div class="panel-footer text-right">
+                        <a href="/hippos/<%= @hippo['id'] %>">cancel</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                        <input type="submit" class="btn btn-xs btn-primary">
+                    </div>
+                <% end %>
+        </div>
+    </div>
+</div>

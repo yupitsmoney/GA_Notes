@@ -1,0 +1,11 @@
+
+<%= form_for @superhero do |s| %>
+
+<%= s.label :name %><%= s.text_field :name %>
+<%= s.label :power_level %><%= s.text_field :power_level %>
+<%= s.label :weakness %><%= s.text_field :weakness %>
+<%= s.label :immortal? %><%= s.text_field :immortal? %>
+<%= s.label :image_url %><%= s.text_field :image_url %>
+<%= s.submit "Submit" %>
+
+<% end %>

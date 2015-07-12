@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<!-- in our html tag we are going to bootstrap our angular ng-app -->
+<!-- [BEFORE STEP 6?] skip ahead for now... during step 6 we will add the name of our angular app here in our <html> tag... also we will add our controller to the <body> tag below-->
+<html ng-app="sampleApp">
+	<head>
+		<meta charset="utf-8">
+
+		<title>Two-Way Data Binding w/ Angular!</title>
+
+		<link rel="stylesheet" href="css/normalize.css">
+		<link rel="stylesheet" href="css/style.css">
+		<!-- BEFORE WE GET STARTED, let's add a src file to include Angular in our page -->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+		<script src="js/main.js"></script>
+	</head>
+
+	<body ng-controller="MyController">
+
+		<header>
+			<h1>
+				Two-Way Binding With Angular
+			</h1>
+			<img src="images/angular.png"/>
+		</header>
+		
+		<!-- STEP 1: we can use this to make sure our Angular app is set up properly -->
+		<section>
+			<h2>Here's a Test to Make Sure Angular Is Hooked Up!</h2>
+			{{2 + 2}}
+			<h3></h3>
+		</section>
+		<!-- end of step 1 -->
+
+
+		<!-- STEP 2: let's look at how we can evaluate expressions inside double curly braces -->
+		<section>
+			<h2>Here's Angular Evaluating Expressions for Us!</h2>
+			{{ 2 * 3.6 / 35 }}
+			<h3></h3>
+			{{ "Hello" + " Angular" }}
+			<h3></h3>
+		</section>
+		<!-- end of step 2 -->
+
+
+		<!-- STEP 3: our first foray into data binding. -->
+		<section>
+			<div>
+				<label>Favorite language:</label>
+				<!-- let's add the model name "myFavLanguage" to the input -->
+				<input type="text" placeholder="Your favorite language" ng-model="myFavLanguage">
+			</div>
+			<!-- let's bind the model that we just created below so that it displays in red -->
+			<h3>Your favorite language is <span class="red-text">{{myFavLanguage}}</span></h3>
+		</section>
+		<!-- end of step 3 -->
+
+
+		<!-- STEP 4: let's look at a slightly more complex example that takes two inputs and then evaluates the values inside double curly braces -->
+		<section>
+			<h3><strong>Donuts Cost Calculator</strong></h3>
+			<div>
+				<label>Number of donuts:</label>
+				<!-- let's create a unique model inside of the following input named "quantity" -->
+				<input type="number" ng-model="quantity">
+			</div>
+			<div>
+				<label>Cost per donut:</label>
+				<!-- now let's create a unique model inside of the following input named "cost" -->
+				<input type="number" ng-model="cost">
+			</div>
+			<!-- let's create an expression inside the <p> tags below that will evaluate the total cost of our donuts... we can even add a filter to it that displays the results as currency-->
+			<p><strong>Total: </strong>{{ quantity * cost | currency}}</p>
+		</section>
+		<!-- end of step 4 -->
+		
+
+		<!-- STEP 5: let's use data binding to dynamically apply a class based on a user input! After we get it working, let's look at what's happening using the Chrome inspector. -->
+
+		<section>
+			<!-- let's assign a model name to this select element and call it "classpicker" -->
+			<select name="Choose a Class" ng-model="classpicker">
+				<option value="">Choose a class...</option>
+				<option value="red-bg">Red Background</option>
+				<option value="blue-bg">Blue Background</option>
+				<option value="green-bg">Green Background</option>
+			</select>
+			<!-- let's bind our newly created model to the class of the <div> below -->
+			<div class="{{classpicker}}">
+				<p>My class is being changed dynamically, based on what is selected in the drop down menu above.  Neat-o!</p>
+			</div>
+		</section>
+		<!-- end of step 5 -->
+
+
+		<!-- STEP 6:
+		  a. declare app in JS file
+		  b. add app name to HTML tag
+		  c. create a new controller in JS file and add name to body tag
+		  d. add $scope.test to controller 
+		  e. add {{ test }} to markup
+		  f. add array of school objects to controller. 
+		  g. add markup to display each contact manually
+		  h. use ng-repeat to display each contact automatically
+		  i. add a deleteContact() function to our app
+		  j. add a delete contact button to HTML -->
+
+		  <!-- this allows us to confirm that our controller is working -->	
+
+		<section>
+			
+			<h3>My Address Book (using ng-repeat)</h3>
+
+			<!-- here's another way to output individual elements of our array using ng-repeat -->
+			<ul>
+				<!-- in the <li> tag below include an ng-repeat to loop through our contacts array -->
+				<li ng-repeat="contact in contacts">
+					<p class="contact-info"><strong>{{ contact.name }}</strong></p>
+					<p class="contact-info">{{ contact.street }}</p>
+					<p class="contact-info">{{ contact.city }}, {{ contact.state }} {{ contact.zip }}</p>
+
+					<!-- add an ng-click that will call the code in our javascript that will delete a contact -->
+					<button class="btn" ng-click="terminateContact($index)">Delete this contact!</button>
+				</li>
+			</ul>
+
+		</section>
+		
+		<!-- end of step 6 -->
+		
+	</body>
+</html>

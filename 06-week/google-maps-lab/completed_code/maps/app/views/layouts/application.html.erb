@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Google Maps</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <script type="text/javascript"
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKZZFeoDsL6q8gouTRgIVjbwKdLNYF7vM">
+</script>
+</head>
+<body>
+
+    <%= yield %>
+
+    <script type="text/javascript">
+        var map,
+            markers = [];
+
+        document.getElementById('remove-all').addEventListener('click', removeAll);
+        document.getElementById('remove-last').addEventListener('click', removeLast);
+
+        function removeAll() {
+            markers.forEach(function(marker) {
+                marker.setMap(null);
+            });
+            markers = [];
+            $.ajax({
+                type: "DELETE",
+                datatype: "json",
+                url: '/remove_all'
+            });
+        }
+
+        function removeLast() {
+            if (markers.length) {
+                marker = markers.pop();
+                marker.setMap(null);
+                $.ajax({
+                    type: "DELETE",
+                    datatype: "json",
+                    url: '/remove_last'
+                });
+            }
+        }
+
+        function initialize() {
+            var mapOptions = {
+            // los angeles
+            center: { lat: 34.052234, lng: -118.243685 },
+            zoom: 10,
+            styles: [{"featureType":"landscape.natural","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#e0efef"}]},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"hue":"#1900ff"},{"color":"#c0e8e8"}]},{"featureType":"road","elementType":"geometry","stylers":[{"lightness":100},{"visibility":"simplified"}]},{"featureType":"road","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"transit.line","elementType":"geometry","stylers":[{"visibility":"on"},{"lightness":700}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#7dcdcd"}]}]
+            };
+
+            map = new google.maps.Map(document.getElementById('map-canvas'),
+                mapOptions);
+
+            google.maps.event.addListener(map, 'click', function(event){
+                addMarker(event.latLng.A, event.latLng.F);
+            });
+
+            <% @markers.each do |m| %>
+                markers.push(new google.maps.Marker({
+                    position: { lat: <%= m.lat %>, lng: <%= m.lng %> },
+                    map: map,
+                    icon: 'http://upload.wikimedia.org/wikipedia/commons/9/92/Map_marker_icon_%E2%80%93_Nicolas_Mollet_%E2%80%93_Home_%E2%80%93_People_%E2%80%93_Default.png'
+                }));
+            <% end %>
+        }
+
+        function addMarker(lat, lng) {
+            markers.push(new google.maps.Marker({
+                position: { lat: lat, lng: lng },
+                map: map,
+                icon: 'http://upload.wikimedia.org/wikipedia/commons/9/92/Map_marker_icon_%E2%80%93_Nicolas_Mollet_%E2%80%93_Home_%E2%80%93_People_%E2%80%93_Default.png'
+            }));
+            $.ajax({
+                type: "POST",
+                datatype: "json",
+                url: '/add_marker',
+                data: { marker: { lat: lat, lng: lng } }
+            });
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+</body>
+</html>

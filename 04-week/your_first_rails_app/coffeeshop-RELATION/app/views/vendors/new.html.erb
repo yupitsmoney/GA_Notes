@@ -1,0 +1,8 @@
+<h1>Add a new Vendor</h1>
+
+<%= form_for [@bean, @vendor] do |f| %>
+	<%= f.label :name %>:<%=f.text_field :name%>
+	<%= f.label :city %>:<%=f.text_field :city%>
+	<%= f.label :state %>:<%=f.text_field :state%>
+	<%= f.submit "Add a Vendor" %>
+<% end %>

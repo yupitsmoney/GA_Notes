@@ -1,0 +1,8 @@
+<h1>Superhero</h1>
+<h2>Name: <%= @superhero.name%></h2>
+<%= image_tag(@superhero.image_url, :class => 'photo')%>
+<h2>Power Level: <%= @superhero.power_level%></h2>
+<H2>Weakness: <%= @superhero.weakness%></H2>
+<h2>Immortality: <%= @superhero.immortal?%></h2>
+<%= link_to "Edit Superhero", edit_superhero_path(@superhero) %>
+<%= link_to "Delete Superhero", superhero_path(@superhero), method: :delete %>

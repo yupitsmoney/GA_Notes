@@ -1,0 +1,39 @@
+<div class="container">
+  <h1> Good Morning</h1>
+  <p> Heres the current information on superheroes today</p>
+
+
+  <%= form_tag('/heroes', method: "get") do %>
+    Search Superhero by
+    <%= select_tag "type", options_for_select(["name", "identity", "powers", "location"]) %> :
+    <%= text_field_tag :query %>
+    <%= submit_tag "Search", "class" => "btn btn-primary" %>
+  <% end %>
+
+  <% if @heroes.methods.include? :page %>
+    <%= paginate @heroes %>
+  <% end %>
+
+  <h3>Superhero Data</h3>
+  <table class="table table-striped">
+    <tr>
+      <th>Name</th>
+      <th>Alias Supposedely</th>
+      <th>Superpower</th>
+      <th>Location...maybe</th>
+    </tr>
+    <% @heroes.each do |hero| %>
+      <%= cache hero do %>
+        <tr>
+          <td>
+            <%= link_to '<button class="btn btn-primary"></button>'.html_safe, hero_path(hero) %>
+            <%= hero.name %>
+          </td>
+          <td><%= hero.identity %></td>
+          <td><%= hero.powers %></td>
+          <td><%= hero.location %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </table>
+</div>

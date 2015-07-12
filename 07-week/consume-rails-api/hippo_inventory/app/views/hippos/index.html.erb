@@ -1,0 +1,24 @@
+<div class="jumbotron"><h1 class="text-center">Big Hippo Inventory</h1></div>
+
+<div class="row">
+    <div class=" col-xs-8 col-xs-offset-2">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Hippo Name</th>
+                    <th class="text-right">Price</th>
+                    <th colspan="2">
+                </tr>
+            </thead>
+            <tbody>
+                <% @hippos.each do |hippo| %>
+                    <tr>
+                        <td><%= hippo['name'] %></td>
+                        <td class="text-right"><%= number_to_currency hippo['price'] %></td>
+                        <td><a href="/hippos/<%= hippo['id'] %>">details</a></td>
+                    </tr> 
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+</div>
